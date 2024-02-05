@@ -115,8 +115,9 @@ private extension SparViewController {
             feedbacksView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor),
             feedbacksView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             feedbacksView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            feedbacksView.heightAnchor.constraint(equalToConstant: 250)
+            feedbacksView.heightAnchor.constraint(equalToConstant: 265)
         ])
+        feedbacksView.backgroundColor = .clear
     }
 }
 

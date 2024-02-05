@@ -27,7 +27,8 @@ public enum Strings {
         case feature05key = "sparViewController.itemLabel.feature05key"
         case feature05value = "sparViewController.itemLabel.feature05value"
         case allFeatures = "sparViewController.itemLabel.allFeatures"
-        case feedbacks = "sparViewController.itemLabel.feedbacks"        
+        case feedbacks = "sparViewController.itemLabel.feedbacks"
+        case allFeedbacks = "sparViewController.itemLabel.allFeedbacks"
     }
     // Countries ISO
     enum CountriesISO: String {

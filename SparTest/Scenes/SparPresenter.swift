@@ -210,12 +210,32 @@ final class SparPresenter: SparPresenterProtocol {
         return button
     }()
     
-    private lazy var feedbacksTable: UITableView = {
-        let table = FeedbacksTableView()
-        table.separatorStyle = .none
-        table.isScrollEnabled = false
-        table.translatesAutoresizingMaskIntoConstraints = false
-        return table
+    // MARK: - Feedback block properties
+    private lazy var feedbacksCollectionView: UICollectionView = {
+        let collection = FeedbacksCollectionView()
+        collection.backgroundColor = .clear
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        return collection
+    }()
+    
+    private let allFeedbacksCount: Int = 152
+    
+    private lazy var allFeedbacksLabel: UIButton = {
+        let button = UIButton.systemButton(
+            with: UIImage(),
+            target: self,
+            action: #selector(allFeedbacksButtonTapped)
+        )
+        button.setTitle(
+            Strings.Localized.allFeedbacks.rawValue.localized() +
+            Strings.Common.space.rawValue +
+            String(allFeedbacksCount),
+            for: .normal
+        )
+        button.setTitleColor(UIColor.greenColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     // MARK: - Feedbacks block properties
@@ -269,6 +289,11 @@ final class SparPresenter: SparPresenterProtocol {
     @objc
     private func allFeaturesButtonTapped() {
         print("allFeaturesButtonTapped")
+    }
+    
+    @objc
+    private func allFeedbacksButtonTapped() {
+        print("allFeedbacksButtonTapped")
     }
     
     func setupSubviews() {
@@ -405,13 +430,17 @@ private extension SparPresenter {
             feedbacksLabel.topAnchor.constraint(equalTo: feedbacksView.topAnchor, constant: 10),
             feedbacksLabel.leadingAnchor.constraint(equalTo: feedbacksView.leadingAnchor, constant: 10)
         ])
-        feedbacksView.addSubview(feedbacksTable)
+        feedbacksView.addSubview(allFeedbacksLabel)
         NSLayoutConstraint.activate([
-            feedbacksTable.topAnchor.constraint(equalTo: feedbacksLabel.bottomAnchor, constant: 10),
-            feedbacksTable.leadingAnchor.constraint(equalTo: feedbacksView.leadingAnchor, constant: 10),
-            feedbacksTable.trailingAnchor.constraint(equalTo: feedbacksView.trailingAnchor, constant: -10),
-            feedbacksTable.bottomAnchor.constraint(equalTo: feedbacksView.bottomAnchor, constant: -40)
+            allFeedbacksLabel.topAnchor.constraint(equalTo: feedbacksView.topAnchor, constant: 10),
+            allFeedbacksLabel.trailingAnchor.constraint(equalTo: feedbacksView.trailingAnchor, constant: -10)
         ])
-        feedbacksView.backgroundColor = .green
+        feedbacksView.addSubview(feedbacksCollectionView)
+        NSLayoutConstraint.activate([
+            feedbacksCollectionView.topAnchor.constraint(equalTo: feedbacksLabel.bottomAnchor, constant: 10),
+            feedbacksCollectionView.leadingAnchor.constraint(equalTo: feedbacksView.leadingAnchor),
+            feedbacksCollectionView.trailingAnchor.constraint(equalTo: feedbacksView.trailingAnchor),
+            feedbacksCollectionView.heightAnchor.constraint(equalToConstant: 180)
+        ])
     }
 }
