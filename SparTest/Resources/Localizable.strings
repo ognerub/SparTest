@@ -1,8 +1,19 @@
-"sparViewController.itemLable.itemType" = "Добавка";
-"sparViewController.itemLable.itemName" = "Липа";
-"sparViewController.itemLable.itemDescription" = "к чаю";
-"sparViewController.itemLable.countryESP" = "Испания, Риоха";
-"sparViewController.itemLable.description" = "Описание";
-"sparViewController.itemLable.info" = "Флавоноиды липового цвета обладают противовоспалительным действием, способствуют укреплению стенки сосудов.";
-"sparViewController.itemLable.features" = "Основые характеристики";
+"sparViewController.itemLabel.itemType" = "Добавка";
+"sparViewController.itemLabel.itemName" = "Липа";
+"sparViewController.itemLabel.itemDescription" = "к чаю";
+"sparViewController.itemLabel.countryESP" = "Испания, Риоха";
+"sparViewController.itemLabel.description" = "Описание";
+"sparViewController.itemLabel.info" = "Флавоноиды липового цвета обладают противовоспалительным действием, способствуют укреплению стенки сосудов.";
+"sparViewController.itemLabel.features" = "Основые характеристики";
+"sparViewController.itemLabel.feature01key" = "01.Производитель";
+"sparViewController.itemLabel.feature01value" = "Россия, Краснодарский край";
+"sparViewController.itemLabel.feature02key" = "02.Энергетическая ценность, ккал/100г";
+"sparViewController.itemLabel.feature02value" = "25 ккал, 105 кДж";
+"sparViewController.itemLabel.feature03key" = "03.Жиры/100г";
+"sparViewController.itemLabel.feature03value" = "0,1г";
+"sparViewController.itemLabel.feature04key" = "04.Белки/100г";
+"sparViewController.itemLabel.feature04value" = "1,3г";
+"sparViewController.itemLabel.feature05key" = "05.Углеводы/100г";
+"sparViewController.itemLabel.feature05value" = "3,3г";
+"sparViewController.itemLabel.allFeatures" = "Все характеристики";
 

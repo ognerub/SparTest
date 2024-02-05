@@ -6,6 +6,7 @@ final class FeaturesTableView: UITableView {
     
     private lazy var featuresTable: UITableView = {
         let table = UITableView()
+        table.separatorStyle = .none
         table.backgroundColor = .blue
         table.isScrollEnabled = false
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -31,11 +32,16 @@ final class FeaturesTableViewDelegate: NSObject, UITableViewDelegate { }
 final class FeaturesTableViewDataSource: NSObject, UITableViewDataSource {
     
     private let featuresDictionary: [String: String] = [
-        "01.Производитель" : "Россия, Краснодарский край",
-        "02.Энергетическая ценность, ккал/100г" : "25 ккал, 105 кДж",
-        "03.Жиры/100г" : "0,1г",
-        "04.Белки/100г" : "1,3г",
-        "05.Углеводы/100г" : "3,3г"
+        Strings.Localized.feature01key.rawValue.localized() :
+            Strings.Localized.feature01value.rawValue.localized(),
+        Strings.Localized.feature02key.rawValue.localized() :
+            Strings.Localized.feature02value.rawValue.localized(),
+        Strings.Localized.feature03key.rawValue.localized() :
+            Strings.Localized.feature03value.rawValue.localized(),
+        Strings.Localized.feature04key.rawValue.localized() :
+            Strings.Localized.feature04value.rawValue.localized(),
+        Strings.Localized.feature05key.rawValue.localized() :
+            Strings.Localized.feature05value.rawValue.localized()
     ]
     
     private lazy var sortedFeaturesDictionary: [(String, String)] = {

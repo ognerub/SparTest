@@ -25,14 +25,12 @@ final class SparViewController: UIViewController {
     
     private lazy var itemView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private lazy var descriptionView: UIView = {
         let view = UIView()
-        view.backgroundColor = .yellow
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -93,7 +91,7 @@ private extension SparViewController {
             descriptionView.topAnchor.constraint(equalTo: itemView.bottomAnchor),
             descriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             descriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            descriptionView.heightAnchor.constraint(equalToConstant: 500)
+            descriptionView.heightAnchor.constraint(equalToConstant: 530)
         ])
     }
 }

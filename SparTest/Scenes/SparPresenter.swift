@@ -187,15 +187,26 @@ final class SparPresenter: SparPresenterProtocol {
     
     private lazy var featuresTable: UITableView = {
         let table = FeaturesTableView()
+        table.separatorStyle = .none
         table.isScrollEnabled = false
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
     
-    private lazy var allFeaturesLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+    private lazy var allFeaturesLabel: UIButton = {
+        let button = UIButton.systemButton(
+            with: UIImage(),
+            target: self,
+            action: #selector(allFeaturesButtonTapped)
+        )
+        button.setTitle(
+            Strings.Localized.allFeatures.rawValue.localized(),
+            for: .normal
+        )
+        button.setTitleColor(UIColor.greenColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     // MARK: - Init
@@ -227,6 +238,11 @@ final class SparPresenter: SparPresenterProtocol {
     @objc
     private func catalogButtonTapped() {
         print("catalogButtonTapped")
+    }
+    
+    @objc
+    private func allFeaturesButtonTapped() {
+        print("allFeaturesButtonTapped")
     }
     
     func setupSubviews() {
@@ -347,7 +363,12 @@ private extension SparPresenter {
             featuresTable.topAnchor.constraint(equalTo: featuresLabel.bottomAnchor, constant: 10),
             featuresTable.leadingAnchor.constraint(equalTo: descriptionView.leadingAnchor, constant: 10),
             featuresTable.trailingAnchor.constraint(equalTo: descriptionView.trailingAnchor, constant: -10),
-            featuresTable.bottomAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: -10)
+            featuresTable.bottomAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: -40)
+        ])
+        descriptionView.addSubview(allFeaturesLabel)
+        NSLayoutConstraint.activate([
+            allFeaturesLabel.topAnchor.constraint(equalTo: featuresTable.bottomAnchor),
+            allFeaturesLabel.leadingAnchor.constraint(equalTo: descriptionView.leadingAnchor, constant: 10)
         ])
     }
 }
