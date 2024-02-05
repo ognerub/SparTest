@@ -72,6 +72,19 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		843412B72B712CE800020CBF /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				84DF36C62B6AADB40025B938 /* SparViewController.swift */,
+				84DF36E52B6BDCAF0025B938 /* SparPresenter.swift */,
+				84DF36E92B6D16F00025B938 /* FeaturesTableView.swift */,
+				84DF36EB2B6D2AA40025B938 /* FeaturesTableViewCell.swift */,
+				84F19A982B70E8F800DB52C3 /* FeedbacksCollectionView.swift */,
+				84F19A9A2B70EAE900DB52C3 /* FeedbacksCollectionViewCell.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		84DF36B62B6AADB40025B938 = {
 			isa = PBXGroup;
 			children = (
@@ -128,12 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				84DF36CD2B6AADB80025B938 /* LaunchScreen.storyboard */,
-				84DF36C62B6AADB40025B938 /* SparViewController.swift */,
-				84DF36E52B6BDCAF0025B938 /* SparPresenter.swift */,
-				84DF36E92B6D16F00025B938 /* FeaturesTableView.swift */,
-				84DF36EB2B6D2AA40025B938 /* FeaturesTableViewCell.swift */,
-				84F19A982B70E8F800DB52C3 /* FeedbacksCollectionView.swift */,
-				84F19A9A2B70EAE900DB52C3 /* FeedbacksCollectionViewCell.swift */,
+				843412B72B712CE800020CBF /* Main */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";

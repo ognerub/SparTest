@@ -211,6 +211,8 @@ final class SparPresenter: SparPresenterProtocol {
     }()
     
     // MARK: - Feedback block properties
+    internal var feedbacksView: UIView
+    
     private lazy var feedbacksCollectionView: UICollectionView = {
         let collection = FeedbacksCollectionView()
         collection.backgroundColor = .clear
@@ -238,9 +240,6 @@ final class SparPresenter: SparPresenterProtocol {
         return button
     }()
     
-    // MARK: - Feedbacks block properties
-    internal var feedbacksView: UIView
-    
     private lazy var feedbacksLabel: UILabel = {
         let label = UILabel()
         label.text = (
@@ -250,6 +249,27 @@ final class SparPresenter: SparPresenterProtocol {
         label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private lazy var leaveFeedback: UIButton = {
+        let button = UIButton.systemButton(
+            with: UIImage(),
+            target: self,
+            action: #selector(leaveFeedbackButtonTapped)
+        )
+        button.setTitle(
+            Strings.Localized.leaveFeedback.rawValue.localized(),
+            for: .normal
+        )
+        button.setTitleColor(UIColor.greenColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        button.backgroundColor = UIColor.whiteColor
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.greenColor.cgColor
+        button.layer.cornerRadius = 20
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     
@@ -294,6 +314,11 @@ final class SparPresenter: SparPresenterProtocol {
     @objc
     private func allFeedbacksButtonTapped() {
         print("allFeedbacksButtonTapped")
+    }
+    
+    @objc
+    private func leaveFeedbackButtonTapped() {
+        print("leaveFeedbackButtonTapped")
     }
     
     func setupSubviews() {
@@ -441,6 +466,13 @@ private extension SparPresenter {
             feedbacksCollectionView.leadingAnchor.constraint(equalTo: feedbacksView.leadingAnchor),
             feedbacksCollectionView.trailingAnchor.constraint(equalTo: feedbacksView.trailingAnchor),
             feedbacksCollectionView.heightAnchor.constraint(equalToConstant: 180)
+        ])
+        feedbacksView.addSubview(leaveFeedback)
+        NSLayoutConstraint.activate([
+            leaveFeedback.topAnchor.constraint(equalTo: feedbacksCollectionView.bottomAnchor, constant: 10),
+            leaveFeedback.leadingAnchor.constraint(equalTo: feedbacksCollectionView.leadingAnchor, constant: 10),
+            leaveFeedback.trailingAnchor.constraint(equalTo: feedbacksCollectionView.trailingAnchor, constant: -10),
+            leaveFeedback.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }

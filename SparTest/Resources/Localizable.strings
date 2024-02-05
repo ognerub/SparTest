@@ -18,4 +18,5 @@
 "sparViewController.itemLabel.allFeatures" = "Все характеристики";
 "sparViewController.itemLabel.feedbacks" = "Отзывы";
 "sparViewController.itemLabel.allFeedbacks" = "Все";
+"sparViewController.itemLabel.leaveFeedback" = "Оставить отзыв";
 
