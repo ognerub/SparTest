@@ -35,22 +35,36 @@ final class SparViewController: UIViewController {
         return view
     }()
     
+    private lazy var feedbacksView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     // MARK: - View controller lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .whiteColor
         configureNavigationBar()
-        configureMainItem()
+        configureItem()
         configureDescription()
+        configureFeedbacks()
         configurePresenter()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let contentHeight = itemView.frame.height + descriptionView.frame.height + feedbacksView.frame.height
+        scrollView.contentSize = CGSize(width: view.frame.width, height: contentHeight)
     }
     
     private func configurePresenter() {
         presenter = SparPresenter(
             navigationBar: navigationBar,
             itemView: itemView,
-            descriptionView: descriptionView
+            descriptionView: descriptionView,
+            feedbacksView: feedbacksView
         )
         guard let presenter = presenter else { return }
         itemView = presenter.itemView
@@ -75,7 +89,7 @@ private extension SparViewController {
         ])
     }
     
-    func configureMainItem() {
+    func configureItem() {
         scrollView.addSubview(itemView)
         NSLayoutConstraint.activate([
             itemView.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
@@ -92,6 +106,16 @@ private extension SparViewController {
             descriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             descriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             descriptionView.heightAnchor.constraint(equalToConstant: 530)
+        ])
+    }
+    
+    func configureFeedbacks() {
+        scrollView.addSubview(feedbacksView)
+        NSLayoutConstraint.activate([
+            feedbacksView.topAnchor.constraint(equalTo: descriptionView.bottomAnchor),
+            feedbacksView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            feedbacksView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            feedbacksView.heightAnchor.constraint(equalToConstant: 250)
         ])
     }
 }

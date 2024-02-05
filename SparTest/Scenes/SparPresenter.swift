@@ -4,6 +4,7 @@ protocol SparPresenterProtocol {
     var navigationBar: UINavigationBar { get set }
     var itemView: UIView { get set }
     var descriptionView: UIView { get set }
+    var feedbacksView: UIView { get set }
     func setupSubviews()
 }
 
@@ -209,15 +210,40 @@ final class SparPresenter: SparPresenterProtocol {
         return button
     }()
     
+    private lazy var feedbacksTable: UITableView = {
+        let table = FeedbacksTableView()
+        table.separatorStyle = .none
+        table.isScrollEnabled = false
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }()
+    
+    // MARK: - Feedbacks block properties
+    internal var feedbacksView: UIView
+    
+    private lazy var feedbacksLabel: UILabel = {
+        let label = UILabel()
+        label.text = (
+            Strings.Localized.feedbacks.rawValue
+        ).localized()
+        label.textColor = UIColor.blackColor
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
     // MARK: - Init
     init(
         navigationBar: UINavigationBar,
         itemView: UIView,
-        descriptionView: UIView
+        descriptionView: UIView,
+        feedbacksView: UIView
     ) {
         self.navigationBar = navigationBar
         self.itemView = itemView
         self.descriptionView = descriptionView
+        self.feedbacksView = feedbacksView
     }
     
     @objc
@@ -258,6 +284,7 @@ private extension SparPresenter {
         configureNavigarionBar()
         configureItemView()
         configureDescriptionView()
+        configureFeedbacksView()
     }
     
     func configureNavigarionBar() {
@@ -370,5 +397,21 @@ private extension SparPresenter {
             allFeaturesLabel.topAnchor.constraint(equalTo: featuresTable.bottomAnchor),
             allFeaturesLabel.leadingAnchor.constraint(equalTo: descriptionView.leadingAnchor, constant: 10)
         ])
+    }
+    
+    func configureFeedbacksView() {
+        feedbacksView.addSubview(feedbacksLabel)
+        NSLayoutConstraint.activate([
+            feedbacksLabel.topAnchor.constraint(equalTo: feedbacksView.topAnchor, constant: 10),
+            feedbacksLabel.leadingAnchor.constraint(equalTo: feedbacksView.leadingAnchor, constant: 10)
+        ])
+        feedbacksView.addSubview(feedbacksTable)
+        NSLayoutConstraint.activate([
+            feedbacksTable.topAnchor.constraint(equalTo: feedbacksLabel.bottomAnchor, constant: 10),
+            feedbacksTable.leadingAnchor.constraint(equalTo: feedbacksView.leadingAnchor, constant: 10),
+            feedbacksTable.trailingAnchor.constraint(equalTo: feedbacksView.trailingAnchor, constant: -10),
+            feedbacksTable.bottomAnchor.constraint(equalTo: feedbacksView.bottomAnchor, constant: -40)
+        ])
+        feedbacksView.backgroundColor = .green
     }
 }

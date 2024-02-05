@@ -4,7 +4,7 @@ final class FeaturesTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    static let cellReuseIdentifier = "cell"
+    static let cellReuseIdentifier = "featuresCell"
     
     private let dotLabel: UILabel = {
         let label = UILabel()
@@ -19,7 +19,6 @@ final class FeaturesTableViewCell: UITableViewCell {
     private let leftTextView: UITextView = {
         let text = UITextView()
         text.isScrollEnabled = false
-        text.textColor = UIColor.blackColor
         text.backgroundColor = UIColor.clear
         text.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +28,6 @@ final class FeaturesTableViewCell: UITableViewCell {
     private let rightTextView: UITextView = {
         let text = UITextView()
         text.isScrollEnabled = false
-        text.textColor = UIColor.blackColor
         text.backgroundColor = UIColor.clear
         text.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -51,12 +49,18 @@ final class FeaturesTableViewCell: UITableViewCell {
     ) {
         leftTextView.text = leftLabel
         rightTextView.text = rightLabel
-        highlightFrom(textView: leftTextView, text: leftLabel)
-        highlightFrom(textView: rightTextView, text: rightLabel)
+        highlight(textView: leftTextView, with: leftLabel)
+        highlight(textView: rightTextView, with: rightLabel)
+        configTextIn(leftTextView: leftTextView, rightTextView: rightTextView)
+    }
+    
+    private func configTextIn(leftTextView: UITextView, rightTextView: UITextView) {
+        leftTextView.textColor = UIColor.blackColor
+        rightTextView.textColor = UIColor.blackColor
         rightTextView.textAlignment = .right
     }
     
-    private func highlightFrom(textView: UITextView, text: String) {
+    private func highlight(textView: UITextView, with text: String) {
         let attributedText = NSMutableAttributedString(string: textView.text)
         let range = (textView.text as NSString).range(of: text, options: .caseInsensitive)
         if range.location != NSNotFound {
