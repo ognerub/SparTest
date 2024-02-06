@@ -5,4 +5,4 @@
 3. Отзывы покупателей горизонтальной коллекцией
 4. Общая стоимость и единицы измерения при помощи стеков
 
-Стек: #MVP, #UITableView, #UICollectionView
+Стек: #MVP, #UITableView, #UICollectionView, #DarkTheme, #Localization, #Pluralization
