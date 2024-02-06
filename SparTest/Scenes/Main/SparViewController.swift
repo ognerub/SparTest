@@ -41,6 +41,13 @@ final class SparViewController: UIViewController {
         return view
     }()
     
+    private lazy var cartView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .whiteColor
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     // MARK: - View controller lifecycle methods
     
     override func viewDidLoad() {
@@ -50,12 +57,17 @@ final class SparViewController: UIViewController {
         configureItem()
         configureDescription()
         configureFeedbacks()
+        configureCart()
         configurePresenter()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let contentHeight = itemView.frame.height + descriptionView.frame.height + feedbacksView.frame.height
+        let contentHeight =
+        itemView.frame.height +
+        descriptionView.frame.height +
+        feedbacksView.frame.height +
+        cartView.frame.height
         scrollView.contentSize = CGSize(width: view.frame.width, height: contentHeight)
     }
     
@@ -64,12 +76,10 @@ final class SparViewController: UIViewController {
             navigationBar: navigationBar,
             itemView: itemView,
             descriptionView: descriptionView,
-            feedbacksView: feedbacksView
+            feedbacksView: feedbacksView,
+            cartView: cartView
         )
         guard let presenter = presenter else { return }
-        itemView = presenter.itemView
-        descriptionView = presenter.descriptionView
-        navigationBar = presenter.navigationBar
         presenter.setupSubviews()
     }
 }
@@ -117,7 +127,20 @@ private extension SparViewController {
             feedbacksView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             feedbacksView.heightAnchor.constraint(equalToConstant: 265)
         ])
-        feedbacksView.backgroundColor = .clear
+    }
+    
+    func configureCart() {
+        scrollView.addSubview(cartView)
+        NSLayoutConstraint.activate([
+            cartView.topAnchor.constraint(equalTo: feedbacksView.bottomAnchor, constant: 20),
+            cartView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cartView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cartView.heightAnchor.constraint(equalToConstant: 110)
+        ])
+        cartView.layer.shadowColor = UIColor.blackColor.cgColor
+        cartView.layer.shadowOpacity = 0.1
+        cartView.layer.shadowRadius = 10
+        cartView.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
 }
 

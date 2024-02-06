@@ -1,17 +1,13 @@
 import UIKit
 
 protocol SparPresenterProtocol {
-    var navigationBar: UINavigationBar { get set }
-    var itemView: UIView { get set }
-    var descriptionView: UIView { get set }
-    var feedbacksView: UIView { get set }
     func setupSubviews()
 }
 
 final class SparPresenter: SparPresenterProtocol {
     
     // MARK: - Navigation bar block properties
-    internal var navigationBar: UINavigationBar
+    private let navigationBar: UINavigationBar
     
     private lazy var backButton: UIButton = {
         let button = UIButton.systemButton(
@@ -54,7 +50,7 @@ final class SparPresenter: SparPresenterProtocol {
     }()
     
     // MARK: - Item view block properties
-    internal var itemView: UIView
+    private let itemView: UIView
     
     private lazy var itemImageView: UIImageView = {
         let image = UIImage.itemImage
@@ -112,7 +108,7 @@ final class SparPresenter: SparPresenterProtocol {
     }()
     
     // MARK: - Description block properties
-    internal var descriptionView: UIView
+    private let descriptionView: UIView
     
     private lazy var itemName: UILabel = {
         let label = UILabel()
@@ -211,7 +207,7 @@ final class SparPresenter: SparPresenterProtocol {
     }()
     
     // MARK: - Feedback block properties
-    internal var feedbacksView: UIView
+    private let feedbacksView: UIView
     
     private lazy var feedbacksCollectionView: UICollectionView = {
         let collection = FeedbacksCollectionView()
@@ -272,58 +268,164 @@ final class SparPresenter: SparPresenterProtocol {
         return button
     }()
     
+    // MARK: - Cart block properties
+    private let cartView: UIView
+    
+    private lazy var selectTypeStack: UIStackView = {
+        let stack = UIStackView()
+        stack.backgroundColor = UIColor.lightGreyColor
+        stack.layer.cornerRadius = 10
+        stack.layer.masksToBounds = true
+        stack.axis = .horizontal
+        stack.spacing = 5
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var itemsButton: UIButton = {
+        let button = UIButton.systemButton(
+            with: UIImage(),
+            target: self,
+            action: #selector(itemsButtonTapped)
+        )
+        button.setTitle(
+            Strings.Localized.itemsLabel.rawValue.localized(),
+            for: .normal
+        )
+        button.setTitleColor(UIColor.blackColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        button.backgroundColor = UIColor.whiteColor
+        button.layer.borderWidth = 3
+        button.layer.borderColor = UIColor.lightGreyColor.cgColor
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var weightButton: UIButton = {
+        let button = UIButton.systemButton(
+            with: UIImage(),
+            target: self,
+            action: #selector(weightButtonTapped)
+        )
+        button.setTitle(
+            Strings.Localized.weightLabel.rawValue.localized(),
+            for: .normal
+        )
+        button.setTitleColor(UIColor.blackColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        button.backgroundColor = UIColor.lightGreyColor
+        button.layer.borderWidth = 3
+        button.layer.borderColor = UIColor.lightGreyColor.cgColor
+        button.layer.cornerRadius = 10
+        button.layer.masksToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let price: Float = 55.9
+    
+    private lazy var priceLabel: UILabel = {
+        let label = UILabel()
+        label.text = String(price)
+        label.textColor = .blackColor
+        label.font = UIFont.systemFont(ofSize: 19, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let discount: Float = 199.0
+    
+    private lazy var discountLabel: UILabel = {
+        let label = UILabel()
+        let attributedLabel = NSMutableAttributedString(string: String(discount))
+        attributedLabel.addAttributes(
+            [NSAttributedString.Key.strikethroughStyle : 2],
+            range: NSRange(location: 0, length: attributedLabel.length)
+        )
+        label.attributedText = attributedLabel
+        label.textColor = .greyColor
+        label.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var unitsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.backgroundColor = .red
+        stack.axis = .vertical
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var currencyLabel: UILabel = {
+        let label = UILabel()
+        label.text = Strings.Localized.currencyLabel.rawValue.localized()
+        label.textAlignment = .left
+        label.textColor = .blackColor
+        label.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var weightLabel: UILabel = {
+        let label = UILabel()
+        label.text = Strings.Localized.weightLabel.rawValue.localized().lowercased()
+        label.textAlignment = .right
+        label.textColor = .blackColor
+        label.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     // MARK: - Init
     init(
         navigationBar: UINavigationBar,
         itemView: UIView,
         descriptionView: UIView,
-        feedbacksView: UIView
+        feedbacksView: UIView,
+        cartView: UIView
     ) {
         self.navigationBar = navigationBar
         self.itemView = itemView
         self.descriptionView = descriptionView
         self.feedbacksView = feedbacksView
-    }
-    
-    @objc
-    private func backButtonTapped() {
-        print("backButtonTapped")
-    }
-    
-    @objc
-    private func likeButtonTapped() {
-        print("likeButtonTapped")
-    }
-    
-    @objc
-    private func uploadButtonTapped() {
-        print("uploadButtonTapped")
-    }
-    
-    @objc
-    private func catalogButtonTapped() {
-        print("catalogButtonTapped")
-    }
-    
-    @objc
-    private func allFeaturesButtonTapped() {
-        print("allFeaturesButtonTapped")
-    }
-    
-    @objc
-    private func allFeedbacksButtonTapped() {
-        print("allFeedbacksButtonTapped")
-    }
-    
-    @objc
-    private func leaveFeedbackButtonTapped() {
-        print("leaveFeedbackButtonTapped")
+        self.cartView = cartView
     }
     
     func setupSubviews() {
         configureConstraints()
     }
+    
+    @objc
+    private func backButtonTapped() { }
+    
+    @objc
+    private func likeButtonTapped() { }
+    
+    @objc
+    private func uploadButtonTapped() { }
+    
+    @objc
+    private func catalogButtonTapped() { }
+    
+    @objc
+    private func allFeaturesButtonTapped() { }
+    
+    @objc
+    private func allFeedbacksButtonTapped() { }
+    
+    @objc
+    private func leaveFeedbackButtonTapped() { }
+    
+    @objc
+    private func itemsButtonTapped() { }
+    
+    @objc
+    private func weightButtonTapped() { }
 }
 
 // MARK: - Configure constraints
@@ -335,6 +437,7 @@ private extension SparPresenter {
         configureItemView()
         configureDescriptionView()
         configureFeedbacksView()
+        configureCart()
     }
     
     func configureNavigarionBar() {
@@ -474,5 +577,36 @@ private extension SparPresenter {
             leaveFeedback.trailingAnchor.constraint(equalTo: feedbacksCollectionView.trailingAnchor, constant: -10),
             leaveFeedback.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    func configureCart() {
+        cartView.addSubview(selectTypeStack)
+        NSLayoutConstraint.activate([
+            selectTypeStack.topAnchor.constraint(equalTo: cartView.topAnchor, constant: 10),
+            selectTypeStack.leadingAnchor.constraint(equalTo: cartView.leadingAnchor, constant: 10),
+            selectTypeStack.trailingAnchor.constraint(equalTo: cartView.trailingAnchor, constant: -10),
+            selectTypeStack.heightAnchor.constraint(equalToConstant: 30)
+        ])
+        selectTypeStack.addArrangedSubview(itemsButton)
+        selectTypeStack.addArrangedSubview(weightButton)
+        cartView.addSubview(priceLabel)
+        NSLayoutConstraint.activate([
+            priceLabel.topAnchor.constraint(equalTo: selectTypeStack.bottomAnchor, constant: 10),
+            priceLabel.leadingAnchor.constraint(equalTo: cartView.leadingAnchor, constant: 20)
+        ])
+        cartView.addSubview(discountLabel)
+        NSLayoutConstraint.activate([
+            discountLabel.topAnchor.constraint(equalTo: priceLabel.bottomAnchor),
+            discountLabel.leadingAnchor.constraint(equalTo: cartView.leadingAnchor, constant: 20)
+        ])
+        cartView.addSubview(unitsStack)
+        NSLayoutConstraint.activate([
+            unitsStack.centerYAnchor.constraint(equalTo: priceLabel.centerYAnchor),
+            unitsStack.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 10),
+            unitsStack.widthAnchor.constraint(equalToConstant: 20),
+            unitsStack.heightAnchor.constraint(equalToConstant: 20)
+        ])
+        unitsStack.addArrangedSubview(currencyLabel)
+        unitsStack.addArrangedSubview(weightLabel)
     }
 }
