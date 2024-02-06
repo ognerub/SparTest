@@ -1,6 +1,6 @@
 import UIKit
 extension UIImage {
-    static let country = UIImage(named: "country") ?? UIImage()
+    static let country = UIImage(named: "countryStar") ?? UIImage()
     static let discountFive = UIImage(named: "discountFive") ?? UIImage()
     static let itemImage = UIImage(named: "itemImage") ?? UIImage()
     static let navBarCatalog = UIImage(named: "navBarCatalog") ?? UIImage()
