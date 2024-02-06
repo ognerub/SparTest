@@ -11,6 +11,7 @@
 		843412B42B710D9C00020CBF /* FeatureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843412B32B710D9C00020CBF /* FeatureViewModel.swift */; };
 		843412B62B71251C00020CBF /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843412B52B71251C00020CBF /* Date+Extensions.swift */; };
 		844BF3F92B722CF000C7BCBA /* DiagonalLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BF3F82B722CF000C7BCBA /* DiagonalLineView.swift */; };
+		844BF3FB2B724E9100C7BCBA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844BF3FA2B724E9100C7BCBA /* TabBarController.swift */; };
 		84DF36C32B6AADB40025B938 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF36C22B6AADB40025B938 /* AppDelegate.swift */; };
 		84DF36C52B6AADB40025B938 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF36C42B6AADB40025B938 /* SceneDelegate.swift */; };
 		84DF36C72B6AADB40025B938 /* SparViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DF36C62B6AADB40025B938 /* SparViewController.swift */; };
@@ -34,6 +35,7 @@
 		843412B32B710D9C00020CBF /* FeatureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureViewModel.swift; sourceTree = "<group>"; };
 		843412B52B71251C00020CBF /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		844BF3F82B722CF000C7BCBA /* DiagonalLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagonalLineView.swift; sourceTree = "<group>"; };
+		844BF3FA2B724E9100C7BCBA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		84DF36BF2B6AADB40025B938 /* SparTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SparTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84DF36C22B6AADB40025B938 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84DF36C42B6AADB40025B938 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,7 +76,7 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		843412B72B712CE800020CBF /* Main */ = {
+		843412B72B712CE800020CBF /* Spar */ = {
 			isa = PBXGroup;
 			children = (
 				84DF36C62B6AADB40025B938 /* SparViewController.swift */,
@@ -85,7 +87,7 @@
 				84F19A982B70E8F800DB52C3 /* FeedbacksCollectionView.swift */,
 				84F19A9A2B70EAE900DB52C3 /* FeedbacksCollectionViewCell.swift */,
 			);
-			path = Main;
+			path = Spar;
 			sourceTree = "<group>";
 		};
 		84DF36B62B6AADB40025B938 = {
@@ -144,7 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				84DF36CD2B6AADB80025B938 /* LaunchScreen.storyboard */,
-				843412B72B712CE800020CBF /* Main */,
+				844BF3FA2B724E9100C7BCBA /* TabBarController.swift */,
+				843412B72B712CE800020CBF /* Spar */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				84F19A9B2B70EAE900DB52C3 /* FeedbacksCollectionViewCell.swift in Sources */,
 				843412B22B710D6C00020CBF /* FeedbackViewModel.swift in Sources */,
 				84DF36D92B6B7A5F0025B938 /* Colors.swift in Sources */,
+				844BF3FB2B724E9100C7BCBA /* TabBarController.swift in Sources */,
 				84DF36E82B6CF1730025B938 /* Strings.swift in Sources */,
 				84DF36EA2B6D16F00025B938 /* FeaturesTableView.swift in Sources */,
 				843412B62B71251C00020CBF /* Date+Extensions.swift in Sources */,

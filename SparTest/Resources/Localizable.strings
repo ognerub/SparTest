@@ -23,3 +23,8 @@
 "sparViewController.itemLabel.weightLabel" = "Кг";
 "sparViewController.itemLabel.currencyLabel" = "₽";
 
+"tabBarController.itemLabel.main" = "Главная";
+"tabBarController.itemLabel.catalog" = "Каталог";
+"tabBarController.itemLabel.cart" = "Корзина";
+"tabBarController.itemLabel.profile" = "Профиль";
+

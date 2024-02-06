@@ -33,6 +33,11 @@ public enum Strings {
         case itemsLabel = "sparViewController.itemLabel.itemsLabel"
         case weightLabel = "sparViewController.itemLabel.weightLabel"
         case currencyLabel = "sparViewController.itemLabel.currencyLabel"
+        case mainLabel = "tabBarController.itemLabel.main"
+        case catalogLabel = "tabBarController.itemLabel.catalog"
+        case cartLabel = "tabBarController.itemLabel.cart"
+        case profileLabel = "tabBarController.itemLabel.profile"
+        
     }
     // Countries ISO
     enum CountriesISO: String {

@@ -387,6 +387,75 @@ final class SparPresenter: SparPresenterProtocol {
         return diagonal
     }()
     
+    private lazy var cartButtonsView: UIView = {
+        let stack = UIView()
+        stack.backgroundColor = .greenColor
+        stack.layer.cornerRadius = 20
+        stack.layer.masksToBounds = true
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private lazy var minusButton: UIButton = {
+        let button = UIButton.systemButton(
+            with: UIImage(),
+            target: self,
+            action: #selector(minusButtonTapped)
+        )
+        button.setTitle(
+            "-",
+            for: .normal
+        )
+        button.setTitleColor(UIColor.whiteColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var plusButton: UIButton = {
+        let button = UIButton.systemButton(
+            with: UIImage(),
+            target: self,
+            action: #selector(plusButtonTapped)
+        )
+        button.setTitle(
+            "+",
+            for: .normal
+        )
+        button.setTitleColor(UIColor.whiteColor, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .regular)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let itemsInCart: Int = 1
+    
+    private lazy var counterLabel: UILabel = {
+        let label = UILabel()
+        label.text = String(itemsInCart) +
+        Strings.Common.space.rawValue +
+        Strings.Localized.itemsLabel.rawValue.localized().lowercased()
+        label.textAlignment = .center
+        label.textColor = .whiteColor
+        label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let totalPrice: Float = 120.0
+    
+    private lazy var totalPriceLabel: UILabel = {
+        let label = UILabel()
+        label.text = String(totalPrice) +
+        Strings.Common.space.rawValue +
+        Strings.Localized.currencyLabel.rawValue.localized().uppercased()
+        label.textAlignment = .center
+        label.textColor = .whiteColor
+        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     // MARK: - Init
     init(
         navigationBar: UINavigationBar,
@@ -405,6 +474,8 @@ final class SparPresenter: SparPresenterProtocol {
     func setupSubviews() {
         configureConstraints()
     }
+    
+    // MARK: - Objective-C methods
     
     @objc
     private func backButtonTapped() { }
@@ -432,6 +503,12 @@ final class SparPresenter: SparPresenterProtocol {
     
     @objc
     private func weightButtonTapped() { }
+    
+    @objc
+    private func plusButtonTapped() { }
+    
+    @objc
+    private func minusButtonTapped() { }
 }
 
 // MARK: - Configure constraints
@@ -621,5 +698,38 @@ private extension SparPresenter {
             diagonalLineView.trailingAnchor.constraint(equalTo: unitsStack.trailingAnchor),
             diagonalLineView.bottomAnchor.constraint(equalTo: unitsStack.bottomAnchor)
         ])
+        cartView.addSubview(cartButtonsView)
+        NSLayoutConstraint.activate([
+            cartButtonsView.topAnchor.constraint(equalTo: priceLabel.topAnchor),
+            cartButtonsView.trailingAnchor.constraint(equalTo: cartView.trailingAnchor, constant: -10),
+            cartButtonsView.leadingAnchor.constraint(equalTo: cartView.centerXAnchor),
+            cartButtonsView.bottomAnchor.constraint(equalTo: discountLabel.bottomAnchor),
+            cartButtonsView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40)
+        ])
+        cartButtonsView.addSubview(minusButton)
+        NSLayoutConstraint.activate([
+            minusButton.topAnchor.constraint(equalTo: cartButtonsView.topAnchor),
+            minusButton.leadingAnchor.constraint(equalTo: cartButtonsView.leadingAnchor),
+            minusButton.bottomAnchor.constraint(equalTo: cartButtonsView.bottomAnchor),
+            minusButton.widthAnchor.constraint(equalToConstant: 42)
+        ])
+        cartButtonsView.addSubview(plusButton)
+        NSLayoutConstraint.activate([
+            plusButton.topAnchor.constraint(equalTo: cartButtonsView.topAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: cartButtonsView.trailingAnchor),
+            plusButton.bottomAnchor.constraint(equalTo: cartButtonsView.bottomAnchor),
+            plusButton.widthAnchor.constraint(equalToConstant: 42)
+        ])
+        cartButtonsView.addSubview(counterLabel)
+        NSLayoutConstraint.activate([
+            counterLabel.bottomAnchor.constraint(equalTo: cartButtonsView.centerYAnchor),
+            counterLabel.centerXAnchor.constraint(equalTo: cartButtonsView.centerXAnchor)
+        ])
+        cartButtonsView.addSubview(totalPriceLabel)
+        NSLayoutConstraint.activate([
+            totalPriceLabel.topAnchor.constraint(equalTo: cartButtonsView.centerYAnchor),
+            totalPriceLabel.centerXAnchor.constraint(equalTo: cartButtonsView.centerXAnchor)
+        ])
     }
+    
 }
