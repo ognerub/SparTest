@@ -354,7 +354,6 @@ final class SparPresenter: SparPresenterProtocol {
     
     private lazy var unitsStack: UIStackView = {
         let stack = UIStackView()
-        stack.backgroundColor = .red
         stack.axis = .vertical
         stack.distribution = .fillEqually
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -366,7 +365,7 @@ final class SparPresenter: SparPresenterProtocol {
         label.text = Strings.Localized.currencyLabel.rawValue.localized()
         label.textAlignment = .left
         label.textColor = .blackColor
-        label.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 11, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -376,9 +375,16 @@ final class SparPresenter: SparPresenterProtocol {
         label.text = Strings.Localized.weightLabel.rawValue.localized().lowercased()
         label.textAlignment = .right
         label.textColor = .blackColor
-        label.font = UIFont.systemFont(ofSize: 11, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 11, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private lazy var diagonalLineView: UIView = {
+        let diagonal = DiagonalLineView()
+        diagonal.backgroundColor = .clear
+        diagonal.translatesAutoresizingMaskIntoConstraints = false
+        return diagonal
     }()
     
     // MARK: - Init
@@ -602,11 +608,18 @@ private extension SparPresenter {
         cartView.addSubview(unitsStack)
         NSLayoutConstraint.activate([
             unitsStack.centerYAnchor.constraint(equalTo: priceLabel.centerYAnchor),
-            unitsStack.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 10),
+            unitsStack.leadingAnchor.constraint(equalTo: priceLabel.trailingAnchor, constant: 5),
             unitsStack.widthAnchor.constraint(equalToConstant: 20),
             unitsStack.heightAnchor.constraint(equalToConstant: 20)
         ])
         unitsStack.addArrangedSubview(currencyLabel)
         unitsStack.addArrangedSubview(weightLabel)
+        unitsStack.addSubview(diagonalLineView)
+        NSLayoutConstraint.activate([
+            diagonalLineView.topAnchor.constraint(equalTo: unitsStack.topAnchor),
+            diagonalLineView.leadingAnchor.constraint(equalTo: unitsStack.leadingAnchor),
+            diagonalLineView.trailingAnchor.constraint(equalTo: unitsStack.trailingAnchor),
+            diagonalLineView.bottomAnchor.constraint(equalTo: unitsStack.bottomAnchor)
+        ])
     }
 }
