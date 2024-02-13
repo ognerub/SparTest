@@ -9,3 +9,12 @@
 4. Общая стоимость и единицы измерения при помощи стеков
 
 Стек: #MVP, #UITableView, #UICollectionView, #DarkTheme, #Localization, #Pluralization
+
+Скриншоты: 
+
+<div align="center">
+    <img src="/Screenshots/screenshot (1).png?raw=true" width="150px"</img>
+    <img src="/Screenshots/screenshot (2).png?raw=true" width="150px"</img>
+    <img src="/Screenshots/screenshot (3).png?raw=true" width="150px"</img>
+    <img src="/Screenshots/screenshot (4).png?raw=true" width="150px"</img>
+</div>
